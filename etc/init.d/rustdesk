@@ -89,12 +89,12 @@ start() {
     config_foreach get_config rustdesk
     [ "x$enabled" != "x1" ] && [ "x${enabled_relay}" != "x1" ] && return
     
-    # 需要cd到目录，否则生成的密钥等其他文件位置不可控
-    cd ${bin_dir}
 	[ -x "${bin_dir}/hbbs" ] || chmod +x ${bin_dir}/hbbs
 	[ -x "${bin_dir}/hbbr" ] || chmod +x ${bin_dir}/hbbr
 	[ -x "${bin_dir}/rustdesk-utils" ] || chmod +x ${bin_dir}/rustdesk-utils
 	
+	# 需要cd到目录，否则生成的密钥等其他文件位置不可控
+    cd ${bin_dir}
     [ "${server_log}" = "1" ] && STD_out=${LOG_FILE} || STD_out=/dev/null
     
     if [ "x$enabled" = "x1" ]; then
@@ -109,20 +109,23 @@ start() {
         
         ${bin_dir}/hbbs ${PARAM_p} ${PARAM_r} ${PARAM_k} ${PARAM_R} ${PARAM_M} ${PARAM_s} ${PARAM_u} >${STD_out} 2>&1 &
         logger -t 'rustdesk' 'hbbs started.'
+		Flag=1
     fi
     if [ "x${enabled_relay}" = "x1" ]; then
         local PARAM_p1 PARAM_k1
         [ -n "${relay_port}" ] && PARAM_p1="-p ${relay_port}"
         [ -n "${relay_key}" ] && PARAM_k1="-k ${relay_key}"
-       
-        ${bin_dir}/hbbr ${PARAM_p1} ${PARAM_k1} >${STD_out} 2>&1 &
+		if [ "$Flag" = "1" ]; then
+			${bin_dir}/hbbr ${PARAM_p1} ${PARAM_k1} >>${STD_out} 2>&1 &
+		else
+			${bin_dir}/hbbr ${PARAM_p1} ${PARAM_k1} >${STD_out} 2>&1 &
+		fi
         logger -t 'rustdesk' 'hbbr started.'
     fi
     add_firewall
 }
 
 stop() {
-	
 	killall hbbs 2>/dev/null
 	killall hbbr 2>/dev/null
 	
@@ -131,4 +134,3 @@ stop() {
 	del_firewall
 	logger -t 'rustdesk' 'Stopped.'
 }
-
