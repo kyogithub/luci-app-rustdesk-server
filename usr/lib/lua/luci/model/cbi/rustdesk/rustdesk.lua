@@ -19,7 +19,7 @@ enable.rmempty=false
 enable_r = t:taboption("base", Flag, "enabled_relay", translate("启用中继服务器"))
 enable_r.rmempty=false
 
-s_log = t:taboption("base", Flag, "server_log", translate("启用输出重定向"), translate("文件/var/log/rustdesk.log"))
+s_log = t:taboption("base", Flag, "server_log", translate("启用输出重定向"), translate("开启后可通过顶部标签“查看输出”查看/var/log/rustdesk.log"))
 s_log.default = 0
 
 binDir = t:taboption("base", Value, "bin_dir", translate("可执行文件目录"))
@@ -37,7 +37,7 @@ firewall:value("check", translate("检测"))
 firewall:value("force", translate("强制"))
 firewall.default = "no"
 
-TCPs = t:taboption("base",Value, "tcp_ports", translate("输入TCP端口"),translate("端口用空格隔开，连续端口可用-连接符。当没有设置“端口”参数时，此处留空将使用默认端口放行，若设置了任一“端口”参数，需要完整填写所有端口号。"))
+TCPs = t:taboption("base",Value, "tcp_ports", translate("输入TCP端口"),translate("端口用空格隔开，连续端口可用-连接符。当没有设置服务器“端口”参数时，此处留空将使用默认端口放行。若设置了任一“端口”参数，程序可能自动改变其他监听端口，可以“查看输出”日志确认所有端口号，再统一填写到此处。"))
 TCPs:depends("set_firewall", "check")
 TCPs:depends("set_firewall", "force")
 TCPs.placeholder = "21115-21119"
