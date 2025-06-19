@@ -1,4 +1,4 @@
--- 修改20241218 by superzjg@qq.com
+-- 修改20250610 by superzjg@qq.com
 
 local t = require"luci.sys"
 local m
@@ -94,10 +94,5 @@ relay_port.description = translate("监听端口，留空默认21117")
 relay_key = t:taboption("relay",Value, "relay_key", translate("key"))
 relay_key.datatype = "string"
 relay_key.description = translate("仅允许具有相同密钥的客户端。若留空，使用缺省key，位于id_ed25519.pub")
-
-local e=luci.http.formvalue("cbi.apply")
-if e then
-io.popen("/etc/init.d/rustdesk restart")
-end
 
 return m
