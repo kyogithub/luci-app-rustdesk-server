@@ -11,15 +11,15 @@
 			var tb = document.getElementById('<%=self.option%>-status');
 			if (tb)
 			{
-				tb.innerHTML += "<%:公钥：%>" + "<font color='green'>" + rv.pubKey + "</font>";
+				tb.innerHTML += "<%:Public Key%>" + "<font color='green'>" + rv.pubKey + "</font>";
 			}
 				btn.disabled = false;
-				btn.value = '<%:读取%>';
+				btn.value = '<%:Read%>';
 			}
 		);
 		return false;
 	}
 //]]></script>
-<input type="button" class="btn cbi-button cbi-button-apply" value="<%:查看%>" onclick="return admin_info(this)" />
+<input type="button" class="btn cbi-button cbi-button-apply" value="<%:View%>" onclick="return admin_info(this)" />
 <span id="<%=self.option%>-status"><em><%=self.value%></em></span>
 <%+cbi/valuefooter%>
