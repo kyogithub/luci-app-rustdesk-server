@@ -4,10 +4,10 @@ XHR.poll(5, '<%=url([[admin]], [[services]], [[rustdesk-server]], [[status]])%>'
 		var tb = document.getElementById('rustdesk_status');
 		if (data && tb) {
 			if (data.running) {
-				var links = '<em><b><font color=green><%:RustDesk service（hbbs） 运行中.%></font></b></em>';
+				var links = '<em><b><font color=green><%:RustDesk service（hbbs）Enabled.%></font></b></em>';
 				tb.innerHTML = links;
 			} else {
-				tb.innerHTML = '<em><b><font color=red><%:RustDesk service（hbbs）未运行.%></font></b></em>';
+				tb.innerHTML = '<em><b><font color=red><%:RustDesk service（hbbs) Disabled.%></font></b></em>';
 			}
 
 		}
@@ -15,10 +15,10 @@ XHR.poll(5, '<%=url([[admin]], [[services]], [[rustdesk-server]], [[status]])%>'
 		var tb2 = document.getElementById('rustdesk_relay_status');
 		if (data && tb2) {
 			if (data.relay_running) {
-				var links = '<em><b><font color=green><%:RustDesk Relay（hbbr）运行中.%></font></b></em>';
+				var links = '<em><b><font color=green><%:RustDesk Relay（hbbr）Enabled.%></font></b></em>';
 				tb2.innerHTML = links;
 			} else {
-				tb2.innerHTML = '<em><b><font color=red><%:RustDesk Relay（hbbr）未运行.%></font></b></em>';
+				tb2.innerHTML = '<em><b><font color=red><%:RustDesk Relay（hbbr）Disabled.%></font></b></em>';
 			}
 		}
 
@@ -28,7 +28,7 @@ XHR.poll(5, '<%=url([[admin]], [[services]], [[rustdesk-server]], [[status]])%>'
 </script>
 <style>.mar-10 {margin-left: 50px; margin-right: 10px;}</style>
 <fieldset class="cbi-section">
-	<legend><%:rustdesk 状态%></legend>
+	<legend><%:rustdesk status%></legend>
 	<p id="rustdesk_status">
 		<em><%:Collecting data...%></em>
 	</p>
