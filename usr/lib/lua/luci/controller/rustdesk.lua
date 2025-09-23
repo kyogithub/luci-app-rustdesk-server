@@ -1,9 +1,9 @@
 module("luci.controller.rustdesk", package.seeall)
 
 function index()
-	entry({"admin", "services", "rustdesk-server"},firstchild(), _("RustDesk 服务器")).dependent = false
-	entry({"admin", "services", "rustdesk-server", "basic"}, cbi("rustdesk/rustdesk"), _("RustDesk 服务器"), 1).leaf = true
-	entry({"admin", "services", "rustdesk-server", "log"}, cbi("rustdesk/log"), _("查看输出"), 2).leaf = true
+	entry({"admin", "services", "rustdesk-server"},firstchild(), _("RustDesk Server")).dependent = false
+	entry({"admin", "services", "rustdesk-server", "basic"}, cbi("rustdesk/rustdesk"), _("RustDesk Server"), 1).leaf = true
+	entry({"admin", "services", "rustdesk-server", "log"}, cbi("rustdesk/log"), _("View"), 2).leaf = true
 	entry({"admin", "services", "rustdesk-server", "get_log"}, call("get_log")).leaf = true
 	entry({"admin", "services", "rustdesk-server", "clear_log"}, call("clear_log")).leaf = true
 	entry({"admin", "services", "rustdesk-server", "status"}, call("status")).leaf = true
